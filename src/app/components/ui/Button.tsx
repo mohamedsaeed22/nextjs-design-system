@@ -6,11 +6,9 @@ const buttonVariant = cva(
   {
     variants: {
       variant: {
-        primary: "text-white bg-black dark:bg-white dark:text-black ",
-        outline:
-          "text-black bg-transparent dark:text-white ",
-        destructive:
-          "bg-red-600 text-black dark:bg-red-800 dark:text-white",
+        primary: "text-primary bg-primary dark:bg-white dark:text-black ",
+        outline: "text-black bg-transparent dark:text-white ",
+        destructive: "bg-red-600 text-black dark:bg-red-800 dark:text-white",
       },
       size: {
         xs: "px-2 text-xs h-6",
@@ -19,11 +17,20 @@ const buttonVariant = cva(
         lg: "px-6 text-lg h-12",
       },
       fullWidth: { true: "w-full justify-center" },
+      rounded: {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-md",
+        lg: "rounded-lg",
+        xl: "rounded-xl",
+        full: "rounded-full",
+      },
     },
 
     defaultVariants: {
       variant: "primary",
       size: "base",
+      rounded: "md",
     },
   }
 );
@@ -39,12 +46,13 @@ const Button = ({
   variant: intent,
   size,
   fullWidth,
+  rounded,
   ...rest
 }: IProps) => {
   return (
     <button
       className={`${tailwindClassMerge(
-        buttonVariant({ variant: intent, size, fullWidth })
+        buttonVariant({ variant: intent, size, fullWidth, rounded })
       )}`}
       {...rest}
     >
